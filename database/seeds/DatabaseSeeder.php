@@ -11,8 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 2)->create();
-        $files = factory(App\Files::class, 10)->create();
+        factory(App\User::class, 3)->create();
+        factory(App\Files::class, 15)->create();
         
     }
 }

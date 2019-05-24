@@ -21,7 +21,12 @@ class FilesController extends Controller
 
     public function __construct()
     {
-        //
+        $this->middleware('auth', [
+            'only' => ['create', 'store', 'edit', 'update', 'destroy']
+        ]);
+        $this->middleware('can:wank,file', [
+            'only' => ['edit', 'update', 'destroy']
+        ]);
     }
 
     /**
@@ -31,7 +36,9 @@ class FilesController extends Controller
      */
     public function index()
     {
-        return view('public.files.index');
+        $file = Files::with('user')->get();
+        return view('public.files.index')->with('files', $file);
+        
     }
 
      /**
@@ -60,10 +67,25 @@ class FilesController extends Controller
             'uuid' => request('uuid'),
             'name' => request('name'),
             'descripcion' => request('descripcion'),
-            'cover' => ($file ? $file->store('files', 'public') : null),
+            'file' => ($file ? $file->store('files', 'public') : null),
         ]);
 
         return redirect('/');
     }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\File  $file
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show()
+    {
+        $file = File::with('name')->firstOrFail();
+
+        return view('public.files.show', ['file' => $file]);
+    }
+
 
 }

@@ -11,9 +11,3 @@
         <small id="uploadFile" class="form-text text-muted"></small>
     </div>
 </div>
-<div class="form-check">
-    <div class="col-md-6">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Accept term of service</label>
-    </div>
-</div>

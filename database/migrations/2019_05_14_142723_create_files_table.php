@@ -17,6 +17,7 @@ class CreateFilesTable extends Migration
             $table->increments('id');
             $table->string('uuid');
             $table->integer('user_id')->unsigned();
+            $table->string('slug')->unique();
             $table->string('name');
             $table->string('descripcion');
             $table->timestamps();
