@@ -1,13 +1,33 @@
-<div class="form-group">
-    <div class="col-md-5">
-        <label for="exampleInputEmail1">File input name</label>
-        <input type="email" class="form-control" id="fileName" aria-describedby="fileName" placeholder="Enter a name">
+<!-- Form de subida del archivo -->
+
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control {{ $errors->has('name')?"is-invalid":"" }}" id="name" name="name" placeholder="Introduce el nombre del archivo" value="{{ isset($file)?$file->name:old('name') }}" required>
+            @if( $errors->has('name'))
+            <div class="invalid-feedback">
+                {{ $errors->first('name') }}
+            </div>
+            @endif
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="file">Subir Archivo aqui</label>
+        <input type="file" class="form-control-file mt-1 {{ $errors->has('file')?"is-invalid":"" }}" id="file" name="file">
+        @if( $errors->has('file'))
+        <div class="invalid-feedback">
+            {{ $errors->first('file') }}
+        </div>
+        @endif
     </div>
 </div>
 <div class="form-group">
-    <div class="col-md-6">
-        <label for="exampleInputPassword1">Upload the file here:</label>
-        <input type="file" class="form-control-file mt-1" id="uploadFile" name="uploadFile">
-        <small id="uploadFile" class="form-text text-muted"></small>
+    <label for="descripcion">Descripción</label>
+    <textarea class="form-control {{ $errors->has('descripcion')?"is-invalid":"" }}" id="descripcion" name="descripcion" rows="5" placeholder="Descripción para el archivo" required>{{ isset($file)?$file->descripcion:old('descripcion') }}</textarea>
+    @if( $errors->has('descripcion'))
+    <div class="invalid-feedback">
+        {{ $errors->first('descripcion') }}
     </div>
+    @endif
 </div>

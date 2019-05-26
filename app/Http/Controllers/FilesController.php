@@ -24,7 +24,7 @@ class FilesController extends Controller
         $this->middleware('auth', [
             'only' => ['create', 'store', 'edit', 'update', 'destroy']
         ]);
-        $this->middleware('can:wank,file', [
+        $this->middleware('can:touch,file', [
             'only' => ['edit', 'update', 'destroy']
         ]);
     }
@@ -62,12 +62,12 @@ class FilesController extends Controller
     {
         $file = $request->file('file');
 
-        $files = Files::create([
+        Files::create([
             'user_id' => $request->user()->id,
-            'uuid' => request('uuid'),
             'name' => request('name'),
+            'slug' => str_slug(request('name'), "-"),
             'descripcion' => request('descripcion'),
-            'file' => ($file ? $file->store('files', 'public') : null),
+            'file' => $file->store('file','public'),
         ]);
 
         return redirect('/');
@@ -80,12 +80,10 @@ class FilesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show()
+    public function show($slug)
     {
-        $file = File::with('name')->firstOrFail();
+        $file = Files::where('slug', $slug)->firstOrFail();
 
         return view('public.files.show', ['file' => $file]);
     }
-
-
 }
