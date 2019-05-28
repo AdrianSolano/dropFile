@@ -8,17 +8,9 @@ use App\Files;
 
 class FilesController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request)
-    {
-        //
-    }
-
+    /* 
+    * Construct/middleware
+    */
     public function __construct()
     {
         $this->middleware('auth', [
@@ -30,7 +22,7 @@ class FilesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Lista de archivos
      *
      * @return \Illuminate\Http\Response
      */
@@ -42,7 +34,7 @@ class FilesController extends Controller
     }
 
      /**
-     * Show the form for creating a new resource.
+     * Crear/Form del archivo
      *
      * @return \Illuminate\Http\Response
      */
@@ -52,7 +44,7 @@ class FilesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store del archivo
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -74,7 +66,7 @@ class FilesController extends Controller
     }
 
      /**
-     * Display the specified resource.
+     * Show del archivo
      *
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
@@ -88,7 +80,7 @@ class FilesController extends Controller
     }
 
      /**
-     * Display the specified resource.
+     * Edit del archivo
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -120,7 +112,7 @@ class FilesController extends Controller
     }
 
     /**
-     * Función para eliminar un archivo
+     * Eliminar
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

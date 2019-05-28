@@ -3,6 +3,7 @@
 @section('title', 'Edit file')
 
 @section('content')
+<!-- Vista de edicion de archivos -->
 <form action="/files/{{ $file->id }}" method="post" novalidate>
 
     @csrf

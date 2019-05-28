@@ -7,7 +7,8 @@ use App\Files;
 use App\User;
 
 class UserFilesController extends Controller
-{
+{   
+    /* Controllador del user y sus file */
     public function index($userSlug)
     {
         $user = User::where('slug', $userSlug)->firstOrFail();

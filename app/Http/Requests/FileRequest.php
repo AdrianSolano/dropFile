@@ -29,7 +29,7 @@ class FileRequest extends FormRequest
             'file'        => 'required'
         ];
     }
-
+    /* Muestra de los mensajes de error */
     public function messages()
     {
         return [
@@ -39,7 +39,7 @@ class FileRequest extends FormRequest
             'file.required' => 'Es necesario subir un :attribute '
         ];
     }
-
+    /* Atributos */
     public function attributes()
     {
         return [

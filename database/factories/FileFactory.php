@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Files;
-
+/* Factory de los archivos */
 $factory->define(Files::class, function (Faker $faker) {
     $name = $faker->name;
     return [
