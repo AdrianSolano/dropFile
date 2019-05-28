@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/', 'PageController@index')->name('root');
+Route::get('/', 'FilesController@index')->name('root');
 Route::get('/contact', 'PageController@contact')->name('contact');
 Route::get('/about', 'PageController@about')->name('about');
 
 Route::resource('/files', 'FilesController');
+
+Route::get('/users/{user}/files', 'UserFilesController@index')->name('userFiles.index');
 
 Auth::routes();
 

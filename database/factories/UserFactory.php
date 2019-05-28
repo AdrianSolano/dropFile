@@ -20,6 +20,7 @@ $factory->define(User::class, function (Faker $faker) {
     $name = $faker->name;
     return [
         'name' => $name,
+        'slug' => str_slug($name,'-'),
         'email' => $faker->unique()->safeEmail,
         'tlfno' => $faker->e164PhoneNumber(),
         'email_verified_at' => now(),

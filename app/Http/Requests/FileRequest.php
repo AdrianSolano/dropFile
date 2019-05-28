@@ -24,7 +24,29 @@ class FileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'         => 'required|min:3',
+            'descripcion'    => 'required',
+            'file'        => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'El :attribute es requerido.',
+            'name.min' => 'El :attribute debe tener al menos 3 caracteres',
+            'descripcion.required' => 'La :attribute es requerida.',
+            'file.required' => 'Es necesario subir un :attribute '
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name'     => 'nombre del archivo',
+            'descripcion' => 'descripción del archivo',
+            'file' => 'archivo'
+
         ];
     }
 }

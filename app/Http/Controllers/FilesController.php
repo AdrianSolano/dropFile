@@ -86,4 +86,50 @@ class FilesController extends Controller
 
         return view('public.files.show', ['file' => $file]);
     }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Files $file)
+    {
+        return view('public.files.edit', ['file' => $file]);
+    }
+
+     /**
+     * Update del edit del archivo
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(FileRequest $request,Files $file)
+    {
+        $file = $request->file('file');
+
+        $file->update([
+            'name' => request('name'),
+            'slug' => str_slug(request('name'), "-"),
+            'descripcion' => request('descripcion'),
+            'file' => $file->store('archivos','public'),
+        ]);
+
+        return redirect('/files/'.$file->slug);
+    }
+
+    /**
+     * Función para eliminar un archivo
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Files $file)
+    {
+        $file->delete();
+
+        return redirect('/');
+    }
+
 }
